@@ -23,7 +23,6 @@ def get_mastodon_instance():
             fp.seek(0)
             data = fp.read()
         client_id, client_secret = data.split()[0], data.split()[1]
-        print('not raised')
     except ClientError:
         client_id, client_secret = Mastodon.create_app(
             'lambda-mstdn-bot-sample',
@@ -31,11 +30,8 @@ def get_mastodon_instance():
         )
         data = f'{client_id}\n{client_secret}'
         s3.Bucket(os.getenv('S3_BUCKET_NAME')).put_object(Key='pytooter_clientcred.txt', Body=data)
-    print(client_id, client_secret)
 
     mastodon = Mastodon(client_id=client_id, client_secret=client_secret, api_base_url=HOST)
-    print(os.getenv('MASTODON_ACCOUNT_EMAIL'))
-    print(os.getenv('MASTODON_ACCOUNT_PASSWORD'))
     mastodon.log_in(
         os.getenv('MASTODON_ACCOUNT_EMAIL'),
         os.getenv('MASTODON_ACCOUNT_PASSWORD'),
