@@ -1,4 +1,5 @@
 import os
+import io
 
 import boto3
 from botocore.exceptions import ClientError
@@ -16,9 +17,10 @@ HOST = 'https://mstdn.fun'
 
 def get_mastodon_instance():
     try:
-        with open('pytooter_clientcred.txt', 'wb') as fp:
+        file = io.BytesIO()
+        with file as fp:
             s3.Bucket(os.getenv('S3_BUCKET_NAME')).download_fileobj('pytooter_clientcred.txt', fp)
-        with open('pytooter_clientcred.txt', 'r') as fp:
+            fp.seek(0)
             data = fp.read()
         client_id, client_secret = data.split()[0], data.split()[1]
         print('not raised')
