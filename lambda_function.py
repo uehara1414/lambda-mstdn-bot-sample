@@ -27,7 +27,7 @@ def get_mastodon_instance():
         client_id, client_secret = data.split()[0], data.split()[1]
     except ClientError:
         client_id, client_secret = Mastodon.create_app(
-            'lambda-mstdn-bot-sample',
+            os.getenv('MASTODON_APPLICATION_NAME'),
             api_base_url=HOST
         )
         data = f'{client_id}\n{client_secret}'
