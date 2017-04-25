@@ -90,3 +90,6 @@ ENV/
 
 .idea/
 lambda.json
+
+*.zip
+vendor/

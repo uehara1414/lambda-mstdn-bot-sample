@@ -1,5 +1,9 @@
 import os
+import sys
 import io
+
+sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'vendor'))  # noqa
+
 
 import boto3
 from botocore.exceptions import ClientError
@@ -42,6 +46,7 @@ def get_mastodon_instance():
 
 def lambda_handler(event, context):
     mastodon = get_mastodon_instance()
+    print(mastodon.timeline_home())
     return str(mastodon.timeline_local())
 
 
