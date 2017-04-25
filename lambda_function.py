@@ -14,6 +14,7 @@ s3 = boto3.resource('s3')
 
 HOST = 'https://mstdn.fun'
 DEBUG = os.getenv('DEBUG')
+TOOT_TEXT = os.getenv('TOOT_TEXT')
 
 
 def get_mastodon_instance():
@@ -44,9 +45,9 @@ def get_mastodon_instance():
 def lambda_handler(event, context):
     mastodon = get_mastodon_instance()
     if not DEBUG:
-        mastodon.toot('test')
+        mastodon.toot(TOOT_TEXT)
     else:
-        print('test')
+        print(TOOT_TEXT)
     return str(mastodon.timeline_local())
 
 
