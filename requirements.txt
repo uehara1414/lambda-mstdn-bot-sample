@@ -1,0 +1,2 @@
+boto3==1.4.4
+Mastodon.py==1.0.6
