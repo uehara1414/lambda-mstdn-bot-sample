@@ -13,6 +13,7 @@ from mastodon import Mastodon
 s3 = boto3.resource('s3')
 
 HOST = 'https://mstdn.fun'
+DEBUG = os.getenv('DEBUG')
 
 
 def get_mastodon_instance():
@@ -42,7 +43,10 @@ def get_mastodon_instance():
 
 def lambda_handler(event, context):
     mastodon = get_mastodon_instance()
-    print(mastodon.timeline_home())
+    if not DEBUG:
+        mastodon.toot('test')
+    else:
+        print('test')
     return str(mastodon.timeline_local())
 
 
