@@ -12,6 +12,6 @@ AWS Lambda で動く mastodon bot のサンプル(ただ一言Tootするだけ�
   - MASTODON_APPLICATION_NAME
   - MASTODON_ACCOUNT_EMAIL
   - MASTODON_ACCOUNT_PASSWORD
-  - S3_BUCKET_NAME(アプリケーションのClientIDとClientSecretを記したファイルを保存するS3 Bucketの名前)
-  - TOOT_TEXT(トゥートする内容)
- 　　- DEBUG(これを設定するとトゥートの代わりに内容を標準出力する)
+  - S3_BUCKET_NAME (アプリケーションのClientIDとClientSecretを記したファイルを保存するS3 Bucketの名前)
+  - TOOT_TEXT (トゥートする内容)
+  - DEBUG (これを設定するとトゥートの代わりに内容を標準出力する)
